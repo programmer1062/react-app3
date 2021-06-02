@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { decrementAction, incrementAction } from "../redux/actions/AppActions";
 
 export function Project() {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const increment = () => {
-    dispatch({ type: "INC" });
+    dispatch(incrementAction());
   };
   const decrement = () => {
-    dispatch({ type: "DEC" });
+    dispatch(decrementAction());
   };
   // const [counter, setCounter] = useState(0);
 
@@ -18,7 +19,7 @@ export function Project() {
   return (
     <div className="mx-4">
       <div className="alert alert-info mt-2 text-center">
-        COUNTER {state.counter}
+        COUNTER {state.cr.counter}
       </div>
 
       <input

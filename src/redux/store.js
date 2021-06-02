@@ -1,26 +1,17 @@
+import { combineReducers } from "redux";
 import { createStore } from "redux";
 
-const initState = {
-  message: "Hello Redux",
-  counter: 0,
-  list: [],
-};
+import { AppReducer } from "./reducers/AppReducer";
 
-function AppReducer(state = initState, action) {
-  switch (action.type) {
-    case "INC":
-      return { ...state, counter: state.counter + 1 };
-    case "DEC":
-      return { ...state, counter: state.counter - 1 };
+import { CounterReducer } from "./reducers/CounterReducer";
+import { TweetReducer } from "./reducers/TweetReducer";
 
-    case "POST_TWEET":
-      const newList = [action.payLoad, ...state.list];
-      return { ...state, list: newList };
-    default:
-      return state;
-  }
-}
+const rootReducer = combineReducers({
+  cr: CounterReducer,
+  tr: TweetReducer,
+});
 
 // to create store, we need reducer
-const store = createStore(AppReducer);
+// const store = createStore(AppReducer);
+const store = createStore(rootReducer);
 export { store };

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { postTweetAction } from "../redux/actions/AppActions";
 
 export function Home() {
   // const [tinput, setTinput] = useState("");
@@ -19,7 +20,7 @@ export function Home() {
 
   const updateTinput = (e) => setTinput(e.target.value);
   const postTweet = () => {
-    dispatch({ type: "POST_TWEET", payLoad: tinput });
+    dispatch(postTweetAction(tinput));
     setTinput("");
   };
 
@@ -44,7 +45,7 @@ export function Home() {
 
       {/** DISPLAY TWEET HERE */}
       <div className="mx-4 mt-4">
-        {state.list.map((item, index) => (
+        {state.tr.list.map((item, index) => (
           <h4 key={index} className="text-secondary">
             {item}
           </h4>
